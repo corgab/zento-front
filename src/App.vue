@@ -1,18 +1,17 @@
 <script>
-import { store } from './store.js'
+// import { store } from './store.js'
 import AppHeader from './components/AppHeader.vue'
-import AppContent from './components/AppContent.vue'
+// import AppContent from './components/AppContent.vue'
 import AppFooter from './components/AppFooter.vue'
 
 export default {
   components: {
     AppHeader,
-    AppContent,
     AppFooter,
   },
   data() {
     return {
-      store,
+
     }
   }
 }
@@ -23,7 +22,8 @@ export default {
 
   <div id="app">
     <AppHeader></AppHeader>
-    <AppContent></AppContent>
+    <!-- <AppContent></AppContent> -->
+    <RouterView />
     <AppFooter></AppFooter>
 
   </div>
@@ -32,5 +32,6 @@ export default {
 
 <style lang="scss">
 @use './assets/style/general.scss';
-@use 'bootstrap'
+@use 'bootstrap';
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
 </style>

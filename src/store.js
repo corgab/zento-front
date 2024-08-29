@@ -1,5 +1,5 @@
-import { reactive } from 'vue'
+// import { reactive } from 'vue'
 
-export const store = reactive({
-  cartItems: 0
-})
+// export const store = reactive({
+//   cartItems: 0
+// })
