@@ -1,40 +1,18 @@
 <template>
-    <div>
-        <h1>ciao</h1>
-        <CardContent v-for="post in posts" :key="post.id" :post="post"/>
+    <div class="container">
+        <!-- <CardContent v-if="posts" v-for="post in posts" :key="post.id" :post="post"/> -->
+        <!-- <h2 v-else>Nessun Post...</h2> -->
+         <CardHighLights/>
     </div>
 </template>
 
 <script>
-import CardContent from "../components/CardContent.vue";
-import axios from 'axios'; // Importa axios
+// import CardContent from "../components/CardContent.vue";
+import CardHighLights from '../components/PageComponents/HighLights.vue'
 
 export default {
     components: {
-        CardContent
-    },
-    data() {
-        return {
-            posts: [], // Array per conservare i post
-            //   loading: true, // Flag per il caricamento
-        }
-    },
-    methods: {
-        fecthPosts() {
-            axios.get('http://127.0.0.1:8000/api/posts/', {
-                params: {
-                    per_page: 6
-                }
-            }
-            ).then(response => {
-                this.posts = response.data.data;
-                console.log(response.data.data)
-                console.log(this.posts)
-            })
-        }
-    },
-    mounted() {
-        this.fecthPosts()
+        CardHighLights
     }
 }
 </script>
