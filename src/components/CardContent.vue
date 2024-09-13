@@ -6,8 +6,8 @@
                 <!-- Immagine preset -->
 
                 <div class="position-absolute d-flex gap-3 tag">
-                    <p v-for="tag in post.tags" class="text-body-emphasis">
-                        <i class="bi bi-circle-fill"></i> {{ tag.name }} <!-- Colore -->
+                    <p v-for="tag in post.tags" class="bg-primary text-white py-1 px-2">
+                        <i class="bi bi-circle-fill"></i> {{ tag.name }}
                     </p>
                 </div>
             </div>
@@ -20,7 +20,7 @@
                     </div>
                 </div>
                 <h5 class="card-title">{{ post.title }}</h5>
-                <p class="card-text text-truncate text-body-secondary ">{{ post.content }}</p> <!-- Colore-->
+                <p class="card-text text-truncate text-body-secondary ">{{ post.content }}</p>
                 <p class="card-text">{{ post.reading_time }}</p>
             </div>
             <div class="card-footer bg-body d-flex gap-2">

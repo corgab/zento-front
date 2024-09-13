@@ -2,7 +2,7 @@
     <div class="py-5">
         <div class="row row-cols-2 g-4">
             <CardContent v-if="posts" v-for="post in posts" :key="post.id" :post="post" />
-            <h2 v-else>ciao</h2>
+            <h2 v-else>Nessun Post...</h2>
         </div>
     </div>
 </template>
