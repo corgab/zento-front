@@ -2,7 +2,8 @@
     <div class="col">
         <div class="card">
             <div v-for="img in post.images" class="position-relative">
-                <img v-if="img.is_featured == 1" :src="img.link" class="card-img-top img-thumbnail p-0 border-white" alt="...">
+                <img v-if="img.is_featured == 1" :src="img.link" class="card-img-top img-thumbnail p-0 border-white"
+                    alt="...">
                 <!-- Immagine preset -->
 
                 <div class="position-absolute d-flex gap-3 tag">
@@ -24,7 +25,7 @@
                 <p class="card-text">{{ post.reading_time }}</p>
             </div>
             <div class="card-footer bg-body d-flex gap-2">
-                <img src="..." alt="user img">
+                <img src="#" alt="user img">
                 <p class="fs-6 text-body-secondary ">by {{ post.user.name }} • {{ post.created_date }}</p>
 
             </div>
@@ -55,13 +56,12 @@ export default {
 
 .card {
     --bs-card-border-width: 0,
-    --bs-card-spacer-y: 0rem;
+        --bs-card-spacer-y: 0rem;
     --bs-card-spacer-x: 0rem;
 }
 
 .card-footer {
     border-top: 0;
-    padding: 2% 0px ;
+    padding: 2% 0px;
 }
-
 </style>
