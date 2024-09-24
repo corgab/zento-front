@@ -2,14 +2,17 @@
     <div class="container">
         <div class="row py-5">
             <CardHighLights class="col"/>
-            <div class="row col-auto">
-                <div class="col text-center" v-for="social in socials">
-                    <img :src="social.logo" alt="" style="width: 30px;">
-                    <h1>{{social.name}}</h1>
-                    <h1>{{social.count }}</h1>
-
+            <div class="col-4">  <!-- Sistemare-->
+                <div class="d-flex justify-content-center gap-3 pb-3">
+                    <div class="text-center" v-for="social in socials">
+                    <img :src="social.logo" alt="" class="py-2" style="width: 30px;">
+                    <h4>{{social.name}}</h4>
+                    <h4>{{social.count }}</h4>
                 </div>
+                </div>
+                <TrendingsTopic class="py-2"/>
             </div>
+            
         </div>
     </div>
 </template>
@@ -17,10 +20,12 @@
 <script>
 // import CardContent from "../components/CardContent.vue";
 import CardHighLights from '../components/PageComponents/HighLights.vue'
+import TrendingsTopic from '../components/PageComponents/TrendingsTopic.vue'
 
 export default {
     components: {
-        CardHighLights
+        CardHighLights,
+        TrendingsTopic
     },
     data() {
         return {
