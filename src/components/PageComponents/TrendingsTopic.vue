@@ -1,7 +1,7 @@
 <template>
     <div>
         <h3 class="py-3">Trending topics</h3>
-        <div class="d-flex flex-column gap-1">
+        <div class="d-flex flex-column gap-2">
             <router-link class="card-overlay text-decoration-none text-white animation" v-for="tag in tags"
                 :key="tag.slug" :to="{ name: 'TagsPage', params: { tag: tag.slug } }">
                 <img src="http://127.0.0.1:8000/storage/images/test-post.webp" class="card-img rounded" alt="image tag">

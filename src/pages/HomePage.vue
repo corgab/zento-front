@@ -1,14 +1,14 @@
 <template>
     <div class="container">
-        <div class="row py-5">
-            <CardHighLights class="col" />
-            <div class="col-4"> <!-- Sistemare-->
-                <div class="d-flex justify-content-center gap-3 pb-3 flex-wrap">
+        <div class="row py-5 gap-1">
+            <CardHighLights class="col-auto col-md" />
+            <div class="col col-md-5"> <!-- Sistemare-->
+                <div class="d-flex align-items-center justify-content-between justify-content-lg-around pb-3 gap-lg-5 ">
                     <div class="text-center animation" v-for="social in socials" :key="social.name">
                         <a :href="social.url" target="_blank" rel="noopener noreferrer">
                             <img :src="social.logo" alt="" class="py-2" style="width: 30px;">
-                            <h4>{{ social.name }}</h4>
-                            <h4>{{ social.count }}</h4>
+                            <h5>{{ social.name }}</h5>
+                            <h5>{{ social.count }}</h5>
                         </a>
                     </div>
                 </div>

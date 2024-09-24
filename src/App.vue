@@ -22,7 +22,6 @@ export default {
 
   <div id="app">
     <AppHeader></AppHeader>
-    <!-- <AppContent></AppContent> -->
     <RouterView />
     <AppFooter></AppFooter>
 
