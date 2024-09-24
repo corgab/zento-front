@@ -11,3 +11,12 @@
 main {
   flex-grow: 1;
 }
+
+// Animazione
+.animation {
+  transition: transform 0.2s;
+}
+
+.animation:hover {
+  transform: scale(1.05);
+}

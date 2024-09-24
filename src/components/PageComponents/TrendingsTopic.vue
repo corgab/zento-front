@@ -1,15 +1,16 @@
 <template>
-    <h3 class="py-3">Trending topics</h3>
-    <div class="d-flex flex-column gap-1">
-        <a href="#" class="card-overlay text-decoration-none text-white" v-for="tag in tags" :key="tag.name">
-            <img src="http://127.0.0.1:8000/storage/images/test-post.webp" class="card-img rounded" alt="image tag">
-            <div class="card-img-overlay d-flex justify-content-center align-items-center">
-                <h5 class="card-title">{{ tag.name }}</h5>
-            </div>
-        </a>
+    <div>
+        <h3 class="py-3">Trending topics</h3>
+        <div class="d-flex flex-column gap-1">
+            <router-link class="card-overlay text-decoration-none text-white animation" v-for="tag in tags"
+                :key="tag.slug" :to="{ name: 'TagsPage', params: { tag: tag.slug } }">
+                <img src="http://127.0.0.1:8000/storage/images/test-post.webp" class="card-img rounded" alt="image tag">
+                <div class="card-img-overlay d-flex justify-content-center align-items-center">
+                    <h5 class="card-title">{{ tag.name }}</h5>
+                </div>
+            </router-link>
+        </div>
     </div>
-
-
 </template>
 
 <script>
@@ -35,10 +36,10 @@ export default {
             }
             ).then(response => {
                 this.tags = response.data.data
-                console.log(response.data.data)
-                // console.log(this.posts)
+                // console.log(response.data.data)
+                console.log(this.tags)
             })
-        }
+        },
     },
     mounted() {
         this.fetchTags()
