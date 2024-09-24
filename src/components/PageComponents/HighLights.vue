@@ -2,7 +2,11 @@
     <div>
         <h3><i class="bi bi-hourglass-top"></i> Today's top highlights</h3>
         <p class="text-body-secondary">Latest breaking news, pictures, videos and special reports</p>
-        <div  class="row row-cols-2 g-4">
+        <!-- Messaggio di caricamento -->
+        <div v-if="loading" class="text-center">
+            <p>Loading posts...</p>
+        </div>
+        <div class="row row-cols-2 g-4" v-else>
             <CardContent v-if="posts.length > 1" v-for="post in posts" :key="post.id" :post="post" />
             <h2 v-else>Nessun Post...</h2>
         </div>
@@ -12,16 +16,16 @@
 <script>
 import axios from 'axios';
 import CardContent from '../CardContent.vue'
-import {store} from '../../store'
+import { store } from '../../store'
 export default {
     components: {
         CardContent,
-        
+
     },
     data() {
         return {
             posts: [], // Array per conservare i post
-            //   loading: true, // Flag per il caricamento
+            loading: true, // Flag per il caricamento
             store
         }
     },
@@ -37,7 +41,9 @@ export default {
                 console.log(response.data.data)
                 console.log(this.posts)
                 // console.log(response)
-            })
+            }).finally(() => {
+                this.loading = false;
+            });
         }
     },
     mounted() {

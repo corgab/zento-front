@@ -3,7 +3,7 @@
         <div class="row py-5">
             <CardHighLights class="col" />
             <div class="col-4"> <!-- Sistemare-->
-                <div class="d-flex justify-content-center gap-3 pb-3 flex-wrap ">
+                <div class="d-flex justify-content-center gap-3 pb-3 flex-wrap">
                     <div class="text-center animation" v-for="social in socials" :key="social.name">
                         <a :href="social.url" target="_blank" rel="noopener noreferrer">
                             <img :src="social.logo" alt="" class="py-2" style="width: 30px;">
