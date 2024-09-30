@@ -1,7 +1,7 @@
 <template>
     <div class="container">
-        <div class="row py-5 gap-1">
-            <CardHighLights class="col-auto col-md" />
+        <div class="row py-5 justify-content-between">
+            <CardHighLights class="co col-md-6" />
             <div class="col col-md-5"> <!-- Sistemare-->
                 <div class="d-flex align-items-center justify-content-between justify-content-lg-around pb-3 gap-lg-5 ">
                     <div class="text-center animation" v-for="social in socials" :key="social.name">

@@ -1,17 +1,20 @@
 <template>
-    <div class="col">
+    <div class="col-6">
         <div class="card">
-            <div v-for="img in post.images" class="position-relative">
-                <img v-if="img.is_featured == 1" :src="img.link" class="card-img-top img-thumbnail p-0 border-white"
-                    alt="...">
-                <!-- Immagine preset -->
+            <router-link class="card-overlay text-decoration-none card-title"
+                :to="{ name: 'SinglePost', params: { post: post.slug } }">
+                <div v-for="img in post.images" class="position-relative">
+                    <img v-if="img.is_featured == 1" :src="img.link" class="card-img-top img-thumbnail p-0 border-white"
+                        alt="...">
+                    <!-- Immagine preset -->
 
-                <div class="position-absolute d-flex gap-3 tag">
-                    <p v-for="tag in post.tags" class="bg-primary text-white py-1 px-2">
-                        <i class="bi bi-circle-fill"></i> {{ tag.name }}
-                    </p>
+                    <div class="position-absolute d-flex gap-3 tag">
+                        <p v-for="tag in post.tags" class="bg-primary text-white py-1 px-2">
+                            <i class="bi bi-circle-fill"></i> {{ tag.name }}
+                        </p>
+                    </div>
                 </div>
-            </div>
+            </router-link>
             <div class="card-body">
                 <div v-if="post.featured" class="card-text"> <!-- da sistemare-->
                     <div class="d-flex fs-6 gap-1 text-body-tertiary">
@@ -20,8 +23,10 @@
 
                     </div>
                 </div>
-                <h5 class="card-title">{{ post.title }}</h5>
-                <p class="card-text text-truncate text-body-secondary ">{{ post.content }}</p>
+                <router-link class="card-overlay text-decoration-none card-title"
+                    :to="{ name: 'SinglePost', params: { post: post.slug } }">
+                    <h5 class="fs-4">{{ post.title }}</h5>
+                </router-link>
                 <p class="card-text">{{ post.reading_time }}</p>
             </div>
             <div class="card-footer bg-body d-flex gap-2">
@@ -34,6 +39,8 @@
 </template>
 
 <script>
+import { RouterLink } from 'vue-router';
+
 export default {
     name: 'CardContent',
     props: {
@@ -49,6 +56,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.img-thumbnail {
+    width: 100%;
+    height: 100%;
+}
+
 .tag {
     bottom: 5%;
     left: 2%;
