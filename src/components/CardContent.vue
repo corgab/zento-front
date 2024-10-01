@@ -9,8 +9,8 @@
                     <!-- Immagine preset -->
 
                     <div class="position-absolute d-flex gap-3 tag">
-                        <p v-for="tag in post.tags" class="bg-primary text-white py-1 px-2">
-                            <i class="bi bi-circle-fill"></i> {{ tag.name }}
+                        <p class="bg-primary text-white py-1 px-2">
+                            <i class="bi bi-circle-fill"></i> {{ post.tags[0].name }}
                         </p>
                     </div>
                 </div>
@@ -25,11 +25,11 @@
                 </div>
                 <router-link class="card-overlay text-decoration-none card-title"
                     :to="{ name: 'SinglePost', params: { post: post.slug } }">
-                    <h5 class="fs-4">{{ post.title }}</h5>
+                    <h5 class="fs-4 title">{{ post.title }}</h5>
                 </router-link>
                 <p class="card-text">{{ post.reading_time }}</p>
             </div>
-            <div class="card-footer bg-body d-flex gap-2">
+            <div class="card-footer bg-body d-flex justify-content-between align-items-center">
                 <img src="#" alt="user img">
                 <p class="fs-6 text-body-secondary ">by {{ post.user.name }} • {{ post.created_date }}</p>
 
@@ -59,11 +59,24 @@ export default {
 .img-thumbnail {
     width: 100%;
     height: 100%;
+    transition: filter 0.1s ease-in;
+}
+
+.img-thumbnail:hover {
+    filter: brightness(70%);
 }
 
 .tag {
     bottom: 5%;
     left: 2%;
+}
+
+.title {
+    transition: text-decoration 0.5s ease-in-out;
+}
+
+.title:hover {
+    text-decoration: underline;
 }
 
 .card {
