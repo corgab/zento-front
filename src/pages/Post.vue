@@ -24,13 +24,15 @@
                     </div>
                     <!-- Da inserire riassunto post -->
                     <!-- Sezioni -->
-                    <img src="/public/images/divider.png" alt="" class="py-5"> <!-- DA CAMBIARE-->
+                    <img src="/images/divider.png" alt="" class="py-5"> <!-- DA CAMBIARE-->
                     <div class="">
-                        <div v-for="section in post.sections" :key="section.id">
+                        <div v-for="(section, index) in post.sections" :key="section.id">
+                            <img :src="sectionImages[index].url" :alt="section.title" class="pb-5">
                             <h2 class="post-title">{{ section.title }}</h2>
                             <p class="serif4 lh-base mb-0 fs-5">{{ section.content }}</p>
-                            <img src="/public/images/divider.png" alt="" class="py-5"> <!-- DA CAMBIARE-->
+                            <img src="/images/divider.png" alt="" class="py-5"> <!-- DA CAMBIARE-->
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -45,7 +47,8 @@ import { store } from '../store'
 export default {
     data() {
         return {
-            post: []
+            post: {},
+            sectionImages: [],
         }
     },
     methods: {
@@ -55,7 +58,16 @@ export default {
             axios.get(`${store.appUrl}api/posts/${slug}`)
                 .then(response => {
                     this.post = response.data; // Imposta i post
-                    console.log(this.post)
+                    console.log(this.post);
+
+                    // Controlla se post.images è un array
+                    if (Array.isArray(this.post.images)) {
+                        console.log(this.post.images);
+                        // Popola sectionImages con immagini non featured
+                        this.sectionImages = this.post.images.filter(image => image.is_featured == 0);
+                    }
+
+                    console.log(this.sectionImages);
                 })
         }
     },

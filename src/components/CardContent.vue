@@ -7,33 +7,34 @@
                     <img v-if="img.is_featured == 1" :src="img.link" class="card-img-top img-thumbnail p-0 border-white"
                         alt="...">
                     <!-- Immagine preset -->
-
-                    <div class="position-absolute d-flex gap-3 tag">
-                        <p class="bg-primary text-white py-1 px-2">
-                            <i class="bi bi-circle-fill"></i> {{ post.tags[0].name }}
-                        </p>
-                    </div>
+                </div>
+                <div class="position-absolute tag">
+                    <p class="bg-primary text-white py-1 px-2">
+                        <i class="bi bi-circle-fill"></i> {{ post.tags[0].name }}
+                    </p>
                 </div>
             </router-link>
-            <div class="card-body">
-                <div v-if="post.featured" class="card-text"> <!-- da sistemare-->
-                    <div class="d-flex fs-6 gap-1 text-body-tertiary">
-                        <i class="bi bi-exclamation-circle d-block"></i>
-                        <p>Premium</p> <!-- Colore -->
 
-                    </div>
+
+        </div>
+        <div class="card-body">
+            <div v-if="post.featured" class="card-text"> <!-- da sistemare-->
+                <div class="d-flex fs-6 gap-1 text-body-tertiary">
+                    <i class="bi bi-exclamation-circle d-block"></i>
+                    <p>Premium</p> <!-- Colore -->
+
                 </div>
-                <router-link class="card-overlay text-decoration-none card-title"
-                    :to="{ name: 'SinglePost', params: { post: post.slug } }">
-                    <h5 class="fs-4 title">{{ post.title }}</h5>
-                </router-link>
-                <p class="card-text">{{ post.reading_time }}</p>
             </div>
-            <div class="card-footer bg-body d-flex justify-content-between align-items-center">
-                <img src="#" alt="user img">
-                <p class="fs-6 text-body-secondary ">by {{ post.user.name }} • {{ post.created_date }}</p>
+            <router-link class="card-overlay text-decoration-none card-title"
+                :to="{ name: 'SinglePost', params: { post: post.slug } }">
+                <h5 class="fs-4 title">{{ post.title }}</h5>
+            </router-link>
+            <p class="card-text">{{ post.reading_time }}</p>
+        </div>
+        <div class="card-footer bg-body d-flex justify-content-between align-items-center">
+            <img src="#" alt="user img">
+            <p class="fs-6 text-body-secondary ">by {{ post.user.name }} • {{ post.created_date }}</p>
 
-            </div>
         </div>
     </div>
 </template>
@@ -69,6 +70,7 @@ export default {
 .tag {
     bottom: 5%;
     left: 2%;
+    cursor: pointer;
 }
 
 .title {

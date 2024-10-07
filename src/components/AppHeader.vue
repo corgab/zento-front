@@ -31,16 +31,9 @@ export default {
             <li class="nav-item fs-5">
               <router-link to="/" class="nav-link">Home</router-link> <!-- Example -->
             </li>
-            <!-- <li class="nav-item">
-              <a class="nav-link" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Home</a>
-            </li> -->
+
           </ul>
+          <router-link to="/register" class="nav-link mx-3">Registrati</router-link>
           <form class="d-flex" role="search">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn" type="submit"><i class="bi bi-search"></i></button>
