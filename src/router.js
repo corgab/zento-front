@@ -1,5 +1,6 @@
 import { createWebHistory, createRouter } from 'vue-router'
 
+import { store } from './store'
 import HomePage from './pages/HomePage.vue'
 import TagsPage from './pages/TagsPage.vue'
 import Post from './pages/Post.vue'
@@ -23,7 +24,7 @@ const routes = [
   },
   {
     path: '/register',
-    name: 'RegiserPage',
+    name: 'RegisterPage',
     component: RegisterPage,
     beforeEnter: (to, from, next) => {
       const token = localStorage.getItem('authToken')
@@ -49,6 +50,7 @@ const routes = [
   },
   {
     path: '/dashboard',
+    name: 'Dashboard',
     component: Dashboard,
     meta: { requiresAuth: true },
   },
@@ -60,6 +62,18 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(),
   routes,
+})
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some((record) => record.meta.requiresAuth)) {
+    if (!store.isAuthenticated) {
+      next({ name: 'LoginPage' })
+    } else {
+      next()
+    }
+  } else {
+    next()
+  }
 })
 
 export default router
