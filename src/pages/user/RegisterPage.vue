@@ -26,7 +26,7 @@
                     </div>
                     <div class="d-sm-flex justify-content-sm-between align-items-center py-2 py-sm-0">
                         <button type="submit" class="btn btn-primary">Invia</button>
-                        <p class="fs-4 mb-0 pt-2">Hai già un account? <router-link to="/login">Loggati</router-link>
+                        <p class="fs-5 mb-0 pt-2">Hai già un account? <router-link to="/login">Loggati</router-link>
                         </p>
                     </div>
                 </form>

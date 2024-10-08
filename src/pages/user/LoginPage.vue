@@ -14,8 +14,8 @@
                     <label for="password">Password</label>
                 </div>
                 <div class="d-sm-flex justify-content-sm-between align-items-center py-2 py-sm-0">
-                    <button type="submit" class="btn btn-primary btn-lg">Accedi</button>
-                    <p class="fs-4 mb-0 pt-2">Non hai un account? <router-link to="/register">Registrati</router-link>
+                    <button type="submit" class="btn btn-primary">Accedi</button>
+                    <p class="fs-5 mb-0 pt-2">Non hai un account? <router-link to="/register">Registrati</router-link>
                     </p>
                 </div>
 

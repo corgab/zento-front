@@ -1,8 +1,8 @@
 <template>
     <div class="container">
-        <div class="row py-5 justify-content-between">
-            <CardHighLights class="col col-lg-6" />
-            <div class="col-md-5"> <!-- Sistemare-->
+        <div class="row py-5">
+            <CardHighLights class="col-12 col-md-7" />
+            <div class="col-12 col-md-5"> <!-- Sistemare-->
                 <div class="d-flex align-items-center justify-content-between justify-content-lg-around pb-3 gap-lg-5 ">
                     <div class="text-center animation" v-for="social in socials" :key="social.name">
                         <a :href="social.url" target="_blank" rel="noopener noreferrer">
