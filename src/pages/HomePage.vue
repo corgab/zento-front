@@ -1,8 +1,8 @@
 <template>
     <div class="container">
         <div class="row py-5 justify-content-between">
-            <CardHighLights class="co col-md-6" />
-            <div class="col col-md-5"> <!-- Sistemare-->
+            <CardHighLights class="col col-lg-6" />
+            <div class="col-md-5"> <!-- Sistemare-->
                 <div class="d-flex align-items-center justify-content-between justify-content-lg-around pb-3 gap-lg-5 ">
                     <div class="text-center animation" v-for="social in socials" :key="social.name">
                         <a :href="social.url" target="_blank" rel="noopener noreferrer">
@@ -12,7 +12,8 @@
                         </a>
                     </div>
                 </div>
-                <TrendingsTopic class="py-2" />
+                <TrendingsTopic class="my-4" />
+                <RecentsPosts class="my-4" />
             </div>
         </div>
     </div>
@@ -21,11 +22,13 @@
 <script>
 import CardHighLights from '../components/PageComponents/HighLights.vue'
 import TrendingsTopic from '../components/PageComponents/TrendingsTopic.vue'
+import RecentsPosts from '../components/PageComponents/RecentsPosts.vue';
 
 export default {
     components: {
         CardHighLights,
-        TrendingsTopic
+        TrendingsTopic,
+        RecentsPosts
     },
     data() {
         return {

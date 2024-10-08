@@ -1,13 +1,13 @@
 <template>
     <div>
-        <h3><i class="bi bi-hourglass-top"></i> Today's top highlights</h3>
-        <p class="text-body-secondary">Latest breaking news, pictures, videos and special reports</p>
+        <h3><i class="bi bi-hourglass-top"></i> I principali eventi di oggi</h3>
+        <p class="text-body-secondary fs-5">Ultime notizie, immagini, video e reportages speciali</p>
         <!-- Messaggio di caricamento -->
         <div v-if="loading" class="text-center">
             <p>Loading posts...</p>
         </div>
-        <div class="row row-cols-2 g-4" v-else>
-            <CardContent v-if="posts.length > 1" v-for="post in posts" :key="post.id" :post="post" />
+        <div class="row row-cols-1 row-cols-md-2 g-4" v-else>
+            <CardContent v-if="posts.length > 1" v-for="post in posts" :key="post.id" :post="post" class="col" />
             <h2 v-else>Nessun Post...</h2>
         </div>
     </div>

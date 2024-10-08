@@ -1,15 +1,15 @@
 <template>
-    <div class="col-6">
+    <div class="">
         <div class="card">
-            <router-link class="card-overlay text-decoration-none card-title"
+            <router-link class="text-decoration-none card-title"
                 :to="{ name: 'SinglePost', params: { post: post.slug } }">
                 <div v-for="img in post.images" class="position-relative">
                     <img v-if="img.is_featured == 1" :src="img.link" class="card-img-top img-thumbnail p-0 border-white"
-                        alt="...">
+                        :alt="img.alt">
                     <!-- Immagine preset -->
                 </div>
                 <div class="position-absolute tag">
-                    <p class="bg-primary text-white py-1 px-2">
+                    <p class="bg-primary text-white py-1 px-2 fs-6">
                         <i class="bi bi-circle-fill"></i> {{ post.tags[0].name }}
                     </p>
                 </div>
@@ -25,7 +25,7 @@
 
                 </div>
             </div>
-            <router-link class="card-overlay text-decoration-none card-title"
+            <router-link class="text-decoration-none card-title"
                 :to="{ name: 'SinglePost', params: { post: post.slug } }">
                 <h5 class="fs-4 title">{{ post.title }}</h5>
             </router-link>
@@ -57,28 +57,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.img-thumbnail {
-    width: 100%;
-    height: 100%;
-    transition: filter 0.1s ease-in;
-}
-
-.img-thumbnail:hover {
-    filter: brightness(70%);
-}
-
 .tag {
+    // font-size: .7rem;
     bottom: 5%;
     left: 2%;
     cursor: pointer;
-}
-
-.title {
-    transition: text-decoration 0.5s ease-in-out;
-}
-
-.title:hover {
-    text-decoration: underline;
 }
 
 .card {
