@@ -36,7 +36,7 @@
 
 <script>
 import axios from 'axios';
-import { store } from '../store'
+import { store } from '../../store'
 export default {
     data() {
         return {
@@ -54,8 +54,11 @@ export default {
         registerUser() {
             axios.post(`${store.appUrl}api/register`, this.user)
                 .then(response => {
+                    const user = response.data.user
+                    const token = response.data.token
                     console.log('Registrazione riuscita:', response.data);
-                    this.$router.push('/login');
+                    store.setAuth(token, user);
+                    this.$router.push('/dashboard');
 
                 })
                 .catch(error => {

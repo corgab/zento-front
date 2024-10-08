@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import { store } from '../store';
+import { store } from '../../store';
 import axios from 'axios'
 export default {
     data() {
@@ -38,14 +38,15 @@ export default {
             axios.post(`${store.appUrl}api/login`, this.user)
                 .then(response => {
                     this.message = response.data.success
+                    const user = response.data.user
                     const token = response.data.token;
-                    localStorage.setItem('authToken', token);
+                    store.setAuth(token, user);
+                    console.log(response.data)
                     this.$router.push('/dashboard');
 
-                    console.log(response)
+
                 }).catch(error => {
                     this.message = error.response.data.errMessage
-                    console.log(error)
                 })
         }
     }

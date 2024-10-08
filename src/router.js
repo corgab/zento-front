@@ -3,9 +3,9 @@ import { createWebHistory, createRouter } from 'vue-router'
 import HomePage from './pages/HomePage.vue'
 import TagsPage from './pages/TagsPage.vue'
 import Post from './pages/Post.vue'
-import RegisterPage from './pages/RegisterPage.vue'
-import LoginPage from './pages/LoginPage.vue'
-import { beforeMain } from '@popperjs/core'
+import RegisterPage from './pages/user/RegisterPage.vue'
+import LoginPage from './pages/user/LoginPage.vue'
+import Dashboard from './pages/user/DashboardPage.vue'
 
 const routes = [
   { path: '/', name: 'HomePage', component: HomePage },
@@ -21,7 +21,19 @@ const routes = [
     component: TagsPage,
     props: true,
   },
-  { path: '/register', name: 'RegiserPage', component: RegisterPage },
+  {
+    path: '/register',
+    name: 'RegiserPage',
+    component: RegisterPage,
+    beforeEnter: (to, from, next) => {
+      const token = localStorage.getItem('authToken')
+      if (token) {
+        next('/dashboard')
+      } else {
+        next()
+      }
+    },
+  },
   {
     path: '/login',
     name: 'LoginPage',
@@ -35,6 +47,12 @@ const routes = [
       }
     },
   },
+  {
+    path: '/dashboard',
+    component: Dashboard,
+    meta: { requiresAuth: true },
+  },
+  {},
 
   // {path: '/:day', name:'Post', component: PostPage}
 ]

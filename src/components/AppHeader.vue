@@ -1,12 +1,20 @@
 <script>
 import logo from '../assets/logo.svg';
+import { store } from '../store';
 
 export default {
-  components: {
+  setup() {
+    return { store }
   },
   data() {
     return {
       logo
+    }
+  },
+  methods: {
+    logoutUser() {
+      store.logout();
+      this.$router.push('/login');
     }
   }
 }
@@ -33,7 +41,17 @@ export default {
             </li>
 
           </ul>
-          <router-link to="/register" class="nav-link mx-3">Registrati</router-link>
+          <ul class="navbar-nav ms-auto">
+            <!-- Controlla se l'utente è autenticato -->
+            <li v-if="store.isAuthenticated" class="nav-item d-flex">
+              <router-link class="nav-link" to="/dashboard">Dashboard</router-link>
+              <button class="nav-link" @click="logoutUser">Logout</button> <!-- Da scegliere se tenere o meno-->
+            </li>
+            <li v-else class="nav-item d-flex">
+              <router-link class="nav-link" to="/register">Register</router-link>
+              <router-link class="nav-link" to="/login">Login</router-link>
+            </li>
+          </ul>
           <form class="d-flex" role="search">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn" type="submit"><i class="bi bi-search"></i></button>
