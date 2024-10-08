@@ -19,13 +19,12 @@ export default {
 </script>
 
 <template>
-
-  <div id="app">
-    <AppHeader></AppHeader>
+  <AppHeader></AppHeader>
+  <main>
     <RouterView />
-    <AppFooter></AppFooter>
+  </main>
+  <AppFooter></AppFooter>
 
-  </div>
 
 </template>
 
