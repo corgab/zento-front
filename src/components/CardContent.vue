@@ -3,9 +3,9 @@
         <div class="card">
             <router-link class="text-decoration-none card-title"
                 :to="{ name: 'SinglePost', params: { post: post.slug } }">
-                <div v-for="img in post.images" class="position-relative">
-                    <img v-if="img.is_featured == 1" :src="img.link" class="card-img-top img-thumbnail p-0 border-white"
-                        :alt="img.alt">
+                <div class="position-relative img-container">
+                    <img :src="post.images[0].link" class="card-img-top img-thumbnail p-0 border-white"
+                        :alt="post.images[0].alt">
                     <!-- Immagine preset -->
                 </div>
                 <div class="position-absolute tag">
@@ -27,7 +27,7 @@
             </div>
             <router-link class="text-decoration-none card-title"
                 :to="{ name: 'SinglePost', params: { post: post.slug } }">
-                <h5 class="fs-4 title">{{ post.title }}</h5>
+                <h5 class="fs-4 title pt-1">{{ post.title }}</h5>
             </router-link>
             <p class="card-text">{{ post.reading_time }}</p>
         </div>
@@ -73,5 +73,15 @@ export default {
 .card-footer {
     border-top: 0;
     padding: 2% 0px;
+}
+
+.img-container {
+    aspect-ratio: 16 / 9;
+}
+
+.img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 </style>

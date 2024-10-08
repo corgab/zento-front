@@ -4,7 +4,9 @@
         <router-link v-for="post in recentPosts" :to="{ name: 'SinglePost', params: { post: post.slug } }"
             class="text-decoration-none card-overlay">
             <div class="d-flex align-items-center pb-3 column-gap-3">
-                <img :src="post.images[0].link" :alt="post.images[0].alt" class="col-4 img-fluid img-thumbnail">
+                <div class="img-container col-4 ">
+                    <img :src="post.images[0].link" :alt="post.images[0].alt" class="img-fluid img-thumbnail">
+                </div>
                 <div class="d-flex flex-column col-8">
                     <h5 class="fs-5 pb-1 title text-body">{{ post.title }}</h5>
                     <h5 class="fs-6 text-body-secondary">{{ post.created_date }}</h5>
@@ -46,4 +48,14 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.img-container {
+    aspect-ratio: 3 / 2;
+}
+
+.img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+</style>
