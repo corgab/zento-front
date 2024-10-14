@@ -7,7 +7,7 @@
             <p>Loading posts...</p>
         </div>
         <div class="row row-cols-1 row-cols-md-2 g-4" v-else>
-            <CardContent v-if="posts.length > 1" v-for="post in posts" :key="post.id" :post="post" class="col" />
+            <CardContent v-if="posts.length > 0" v-for="post in posts" :key="post.id" :post="post" class="col" />
             <h2 v-else>Nessun Post...</h2>
         </div>
     </div>
