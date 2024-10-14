@@ -4,9 +4,9 @@
             <router-link class="text-decoration-none card-title"
                 :to="{ name: 'SinglePost', params: { post: post.slug } }">
                 <div class="position-relative img-container">
-                    <img :src="post.images[0].link" class="card-img-top img-thumbnail p-0 border-white"
-                        :alt="post.images[0].alt">
-                    <!-- Immagine preset -->
+                    <img v-if="featuredImage" :src="featuredImage.link"
+                        class="card-img-top img-thumbnail p-0 border-white"
+                        :alt="featuredImage.alt || 'Immagine in primo piano'">
                 </div>
                 <div class="position-absolute tag">
                     <p class="bg-primary text-white py-1 px-2 fs-6">
@@ -14,15 +14,12 @@
                     </p>
                 </div>
             </router-link>
-
-
         </div>
         <div class="card-body">
-            <div v-if="post.featured" class="card-text"> <!-- da sistemare-->
+            <div v-if="post.featured" class="card-text">
                 <div class="d-flex fs-6 gap-1 text-body-tertiary">
                     <i class="bi bi-exclamation-circle d-block"></i>
-                    <p>Premium</p> <!-- Colore -->
-
+                    <p>Premium</p>
                 </div>
             </div>
             <router-link class="text-decoration-none card-title"
@@ -33,11 +30,11 @@
         </div>
         <div class="card-footer bg-body d-flex justify-content-between align-items-center">
             <img src="#" alt="user img">
-            <p class="fs-6 text-body-secondary ">by {{ post.user.name }} • {{ post.created_date }}</p>
-
+            <p class="fs-6 text-body-secondary">by {{ post.user.name }} • {{ post.created_date }}</p>
         </div>
     </div>
 </template>
+
 
 <script>
 import { RouterLink } from 'vue-router';
@@ -50,6 +47,11 @@ export default {
             required: true
         }
     },
+    computed: {
+        featuredImage() {
+            return this.post.images.find(img => img.is_featured === 1);
+        }
+    }
     // mounted() {
     //     console.log(this.post)
     // }
