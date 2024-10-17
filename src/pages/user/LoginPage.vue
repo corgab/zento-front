@@ -4,21 +4,16 @@
             <h2 class="py-2">Accedi al tuo account</h2>
             <form @submit.prevent="loginUser">
                 <div class="form-floating mb-4">
-                    <input type="email" class="form-control" id="email" placeholder="name@example.com"
-                        v-model="user.email">
+                    <input type="email" class="form-control" id="email" v-model="user.email"
+                        placeholder="name@example.com">
                     <label for="email">Email</label>
                 </div>
                 <div class="form-floating mb-4">
-                    <input type="password" class="form-control" id="password" name="password" placeholder="Password"
-                        v-model="user.password">
+                    <input type="password" class="form-control" id="password" v-model="user.password"
+                        placeholder="Password">
                     <label for="password">Password</label>
                 </div>
-                <div class="d-sm-flex justify-content-sm-between align-items-center py-2 py-sm-0">
-                    <button type="submit" class="btn btn-primary">Accedi</button>
-                    <p class="fs-5 mb-0 pt-2">Non hai un account? <router-link to="/register">Registrati</router-link>
-                    </p>
-                </div>
-
+                <button type="submit" class="btn btn-primary">Accedi</button>
             </form>
             <div v-if="message" class="my-3">
                 <h5>{{ message }}</h5>
@@ -29,39 +24,33 @@
 
 <script>
 import { store } from '../../store';
-import axios from 'axios'
+
 export default {
     data() {
         return {
-            store,
             user: {
                 email: '',
                 password: '',
             },
             message: ''
-        }
+        };
     },
     methods: {
         loginUser() {
-            axios.post(`${store.appUrl}api/login`, this.user)
+            store.login(this.user)
                 .then(response => {
-                    this.message = response.data.success
-                    const user = response.data.user
-                    const token = response.data.token;
-                    store.setAuth(token, user);
-                    console.log(response.data)
-                    this.$router.push('/dashboard');
-
-
-                }).catch(error => {
-                    this.message = error.response.data.errMessage
+                    this.message = response.data.success;
+                    this.$router.push('/dashboard'); // Reindirizza alla dashboard
                 })
+                .catch(error => {
+                    this.message = error.response.data.errMessage; // Mostra il messaggio d'errore
+                });
         }
     }
-}
+};
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 .container {
     max-width: 570px;
 }

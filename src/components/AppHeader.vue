@@ -1,28 +1,4 @@
-<script>
-import logo from '../assets/logo.svg';
-import { store } from '../store';
-
-export default {
-  setup() {
-    return { store }
-  },
-  data() {
-    return {
-      logo
-    }
-  },
-  methods: {
-    logoutUser() {
-      store.logout();
-      this.$router.push('/login');
-    }
-  }
-}
-
-</script>
-
 <template>
-
   <header>
     <nav class="navbar navbar-expand-md">
       <div class="container-fluid">
@@ -37,22 +13,20 @@ export default {
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item fs-5">
-              <router-link to="/" class="nav-link">Home</router-link> <!-- Example -->
+              <router-link to="/" class="nav-link">Home</router-link>
             </li>
-
           </ul>
           <ul class="navbar-nav ms-auto">
-            <!-- Controlla se l'utente è autenticato -->
-            <li v-if="store.isAuthenticated" class="nav-item d-flex">
+            <li v-if="store.user" class="nav-item d-flex">
               <router-link class="nav-link" to="/dashboard">Dashboard</router-link>
-              <button class="nav-link" @click="logoutUser">Logout</button> <!-- Da scegliere se tenere o meno-->
+              <button class="nav-link" @click="logoutUser">Logout</button>
             </li>
             <li v-else class="nav-item d-flex">
               <router-link class="nav-link" to="/register">Register</router-link>
               <router-link class="nav-link" to="/login">Login</router-link>
             </li>
           </ul>
-          <form class="d-flex" role="search">
+          <form class="d-flex" role="search" @submit.prevent="search">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn" type="submit"><i class="bi bi-search"></i></button>
           </form>
@@ -60,7 +34,33 @@ export default {
       </div>
     </nav>
   </header>
-
 </template>
 
-<style></style>
+<script>
+import logo from '../assets/logo.svg';
+import { store } from '../store';
+
+export default {
+  setup() {
+    return { logo, store };
+  },
+  methods: {
+    logoutUser() {
+      store.logout()
+        .then(response => {
+          console.log('Logout riuscito:', response.data);
+          this.$router.push('/login');
+        })
+        .catch(error => {
+          console.error('Errore durante il logout:', error.response.data);
+        });
+    },
+    search() {
+      // Funzione per gestire la ricerca
+      console.log("Searching...");
+    }
+  }
+};
+</script>
+
+<style scoped></style>

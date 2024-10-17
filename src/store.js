@@ -1,20 +1,53 @@
 import { reactive } from 'vue'
+import axios from 'axios'
 
 export const store = reactive({
-  appUrl: 'http://31.56.7.95:3000/',
-  // appUrl: 'http://127.0.0.1:8000/',
-  isAuthenticated: !!localStorage.getItem('authToken'),
+  appUrl: 'http://127.0.0.1:8000/',
   user: null,
 
-  setAuth(token, user) {
-    this.isAuthenticated = true
-    this.user = user
-    localStorage.setItem('authToken', token)
+  register(user) {
+    return axios
+      .post(`${this.appUrl}api/register`, user)
+      .then((response) => {
+        this.user = response.data.user
+        axios.defaults.headers.common[
+          'Authorization'
+        ] = `Bearer ${response.data.token}`
+        return response
+      })
+      .catch((error) => {
+        console.error('Errore nella registrazione:', error.response.data)
+        throw error
+      })
+  },
+
+  login(user) {
+    return axios
+      .post(`${this.appUrl}api/login`, user)
+      .then((response) => {
+        this.user = response.data.user
+        axios.defaults.headers.common[
+          'Authorization'
+        ] = `Bearer ${response.data.token}`
+        return response
+      })
+      .catch((error) => {
+        console.error('Errore nel login:', error.response.data)
+        throw error
+      })
   },
 
   logout() {
-    this.isAuthenticated = false
-    this.user = null
-    localStorage.removeItem('authToken')
+    return axios
+      .post(`${this.appUrl}api/logout`)
+      .then((response) => {
+        this.user = null
+        delete axios.defaults.headers.common['Authorization']
+        return response
+      })
+      .catch((error) => {
+        console.error('Errore nel logout:', error.response.data)
+        throw error
+      })
   },
 })
