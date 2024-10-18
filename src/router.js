@@ -7,6 +7,7 @@ import RegisterPage from './pages/user/RegisterPage.vue'
 import LoginPage from './pages/user/LoginPage.vue'
 import Dashboard from './pages/user/DashboardPage.vue'
 import NotFound from './pages/404.vue'
+import VerifyEmail from './pages/VerifyEmail.vue'
 
 const routes = [
   { path: '/', name: 'HomePage', component: HomePage },
@@ -51,6 +52,11 @@ const routes = [
     name: 'Dashboard',
     component: Dashboard,
     meta: { requiresAuth: true },
+  },
+  {
+    path: '/verify-email',
+    component: VerifyEmail,
+    props: true,
   },
   {
     path: '/:catchAll(.*)',
