@@ -39,7 +39,9 @@ export default {
         loginUser() {
             store.login(this.user)
                 .then(response => {
+                    console.log(response)
                     this.message = response.data.success;
+                    this.message = response.data.errMessage;
                     this.$router.push('/dashboard'); // Reindirizza alla dashboard
                 })
                 .catch(error => {

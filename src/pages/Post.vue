@@ -18,17 +18,19 @@
                     </div>
                 </div>
                 <hr>
+                <!-- Copertina-->
                 <div class="roboto my-5">
-                    <div v-for="featuredImage in post.images" :key="featuredImage.url">
-                        <img :src="featuredImage.url" alt="" v-if="featuredImage.is_featured == 1">
+                    <div v-if="coverImage" class="img-container">
+                        <img :src="coverImage.url" alt="" />
                     </div>
-                    <!-- Da inserire riassunto post -->
-                    <!-- Sezioni -->
+                    <!-- Section -->
                     <img src="/images/divider.png" alt="" class="py-5"> <!-- DA CAMBIARE-->
                     <div class="">
                         <div v-for="(section, index) in post.sections" :key="section.id">
-                            <img :src="sectionImages[index].url" :alt="section.title" class="pb-5">
-                            <h2 class="post-title">{{ section.title }}</h2>
+                            <div class="img-container pb-5">
+                                <img :src="sectionImages[index].url" :alt="section.title">
+                            </div>
+                            <h2 class="post-title pb-2">{{ section.title }}</h2>
                             <p class="serif4 lh-base mb-0 fs-5">{{ section.content }}</p>
                             <img src="/images/divider.png" alt="" class="py-5"> <!-- DA CAMBIARE-->
                         </div>
@@ -38,7 +40,6 @@
             </div>
         </div>
     </section>
-
 </template>
 
 <script>
@@ -49,6 +50,7 @@ export default {
         return {
             post: {},
             sectionImages: [],
+            coverImage: null, // Nuova proprietà per l'immagine di copertina
         }
     },
     methods: {
@@ -60,13 +62,15 @@ export default {
                     this.post = response.data; // Imposta i post
                     console.log(this.post);
 
-                    // Controlla se post.images è un array
                     if (Array.isArray(this.post.images)) {
-                        console.log(this.post.images);
+                        // Seleziona l'immagine featured come copertina
+                        this.coverImage = this.post.images.find(image => image.is_featured == 1) || null;
+
                         // Popola sectionImages con immagini non featured
                         this.sectionImages = this.post.images.filter(image => image.is_featured == 0);
                     }
 
+                    console.log(this.coverImage);
                     console.log(this.sectionImages);
                 })
         }
@@ -74,9 +78,9 @@ export default {
     mounted() {
         this.fetchPost()
     }
-
 }
 </script>
+
 
 <style lang="scss" scoped>
 .container {
@@ -99,5 +103,15 @@ export default {
 .post-body {
 
     font-weight: 500;
+}
+
+.img-container {
+    aspect-ratio: 16 / 10;
+}
+
+.img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 </style>

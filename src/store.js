@@ -9,7 +9,6 @@ export const store = reactive({
     return axios
       .post(`${this.appUrl}api/register`, user)
       .then((response) => {
-        this.user = response.data.user
         // axios.defaults.headers.common[
         //   'Authorization'
         // ] = `Bearer ${response.data.token}`

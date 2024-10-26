@@ -28,8 +28,7 @@
             </router-link>
             <p class="card-text">{{ post.reading_time }}</p>
         </div>
-        <div class="card-footer bg-body d-flex justify-content-between align-items-center">
-            <img src="#" alt="user img">
+        <div class="card-footer bg-body">
             <p class="fs-6 text-body-secondary">by {{ post.user.name }} • {{ post.created_date }}</p>
         </div>
     </div>
@@ -77,6 +76,7 @@ export default {
     padding: 2% 0px;
 }
 
+/* Immagini */
 .img-container {
     aspect-ratio: 16 / 9;
 }
