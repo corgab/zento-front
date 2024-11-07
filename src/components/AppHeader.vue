@@ -17,13 +17,8 @@
             </li>
           </ul>
           <ul class="navbar-nav ms-auto">
-            <li v-if="store.user" class="nav-item d-flex">
-              <router-link class="nav-link" to="/dashboard">Dashboard</router-link>
-              <button class="nav-link" @click="logoutUser">Logout</button>
-            </li>
-            <li v-else class="nav-item d-flex">
-              <router-link class="nav-link" to="/register">Register</router-link>
-              <router-link class="nav-link" to="/login">Login</router-link>
+            <li class="nav-item d-flex">
+              <a :href="appUrl" class="nav-link">Area Utente</a>
             </li>
           </ul>
           <form class="d-flex" role="search" @submit.prevent="search">
@@ -43,6 +38,11 @@ import { store } from '../store';
 export default {
   setup() {
     return { logo, store };
+  },
+  data() {
+    return {
+      appUrl: store.appUrl,
+    }
   },
   methods: {
     logoutUser() {

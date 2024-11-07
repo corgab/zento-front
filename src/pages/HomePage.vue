@@ -1,5 +1,31 @@
 <template>
     <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <img src="http://127.0.0.1:8000/storage/images/test-post.webp" alt="" class="rounded">
+                <!-- Passare dinamicamente componente -->
+            </div>
+            <div class="col-md-6 mt-3 mt-md-0">
+                <div class="col-12">
+                    <img src="http://127.0.0.1:8000/storage/images/test-post.webp" alt="" class="rounded img-fluid">
+                    <!-- Passare dinamicamente componente -->
+                </div>
+                <div class="row">
+                    <div class="col-12 col-md-6 mt-3">
+                        <img src="http://127.0.0.1:8000/storage/images/test-post.webp" alt="Immagine Destra 2"
+                            class="img-fluid rounded">
+                        <!-- Passare dinamicamente componente -->
+                    </div>
+                    <div class="col-12 col-md-6 mt-3">
+                        <img src="http://127.0.0.1:8000/storage/images/test-post.webp" alt="Immagine Destra 2"
+                            class="img-fluid rounded">
+                        <!-- Passare dinamicamente componente -->
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
         <div class="row my-5">
             <CardHighLights class="col-12 col-md-7 col-lg-8" />
             <div class="col-12 col-md-5 col-lg-4"> <!-- Sistemare-->
