@@ -16,6 +16,7 @@
             </router-link>
         </div>
         <div class="card-body">
+            <!-- togliere premium -->
             <div v-if="post.featured" class="card-text">
                 <div class="d-flex fs-6 gap-1 text-body-tertiary">
                     <i class="bi bi-exclamation-circle d-block"></i>
