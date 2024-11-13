@@ -12,7 +12,7 @@
                             :read_time="posts[0]?.reading_time" :isNotFirst="false" :post="posts[0]" />
                         <!-- :content="posts[0]?.content"-->
                         <div class="col-12 col-xl-6 mt-3 mt-md-0">
-                            <HeroCard class="col-12" :isSmall="true" :imageUrl="posts[1]?.images[0]?.link"
+                            <HeroCard class="col-12 d-block" :isSmall="true" :imageUrl="posts[1]?.images[0]?.link"
                                 :title="posts[1]?.title" :user="posts[1]?.user.name"
                                 :created_at="posts[1]?.created_date" :post="posts[1]" />
 

@@ -1,5 +1,5 @@
 <template>
-    <router-link :to="{ name: 'SinglePost', params: { post: post.slug } }" class="position-relative text-white">
+    <router-link :to="{ name: 'SinglePost', params: { post: post.slug } }" class="position-relative text-white scale">
         <img :src="imageUrl" alt=""
             :class="['rounded', 'thumbnail', { 'img-fluid': isNotFirst }, { 'img-small': isSmall }, { 'img-large': isLarge }]">
         <div class="position-absolute px-2">
@@ -96,13 +96,17 @@ img {
     object-fit: cover;
 }
 
-
-
 .thumbnail {
     transition: filter 0.1s ease-in;
 }
 
 .thumbnail:hover {
     filter: brightness(70%);
+}
+
+.scale:hover {
+    display: block;
+    transform: scale(1.05);
+
 }
 </style>
