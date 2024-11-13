@@ -4,8 +4,8 @@
             :class="['rounded', 'thumbnail', { 'img-fluid': isNotFirst }, { 'img-small': isSmall }, { 'img-large': isLarge }]">
         <div class="position-absolute px-2">
             <div class="d-flex py-2">
-                <p class="bg-primary rounded py-1 px-2 fs-6 m-0">
-                    <i class="bi bi-circle-fill"></i> Tag
+                <p class="bg-primary rounded py-1 px-2 fs-6 m-0" v-for="tag in post.tags">
+                    <i class="bi bi-circle-fill"></i> {{ tag.name }}
                 </p>
             </div>
             <div>
