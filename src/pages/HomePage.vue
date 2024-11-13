@@ -9,21 +9,21 @@
                     <div class="row">
                         <HeroCard class="col-12 col-xl-6 mb-2 mb-xl-0" :imageUrl="posts[0]?.images[0]?.link"
                             :title="posts[0]?.title" :user="posts[0]?.user.name" :created_at="posts[0]?.created_date"
-                            :read_time="posts[0]?.reading_time" :isNotFirst="false" />
+                            :read_time="posts[0]?.reading_time" :isNotFirst="false" :post="posts[0]" />
                         <!-- :content="posts[0]?.content"-->
                         <div class="col-12 col-xl-6 mt-3 mt-md-0">
                             <HeroCard class="col-12" :isSmall="true" :imageUrl="posts[1]?.images[0]?.link"
                                 :title="posts[1]?.title" :user="posts[1]?.user.name"
-                                :created_at="posts[1]?.created_date" />
+                                :created_at="posts[1]?.created_date" :post="posts[1]" />
 
 
                             <div class="row">
                                 <HeroCard class="col-12 col-md-6 mt-3" :isLarge="true"
                                     :imageUrl="posts[2]?.images[0]?.link" :title="posts[2]?.title"
-                                    :user="posts[2]?.user.name" :created_at="posts[2]?.created_date" />
+                                    :user="posts[2]?.user.name" :created_at="posts[2]?.created_date" :post="posts[2]" />
                                 <HeroCard class="col-12 col-md-6 mt-3" :isLarge="true"
                                     :imageUrl="posts[3]?.images[0]?.link" :title="posts[3]?.title"
-                                    :user="posts[3]?.user.name" :created_at="posts[3]?.created_date" />
+                                    :user="posts[3]?.user.name" :created_at="posts[3]?.created_date" :post="posts[3]" />
                             </div>
                         </div>
                     </div>
@@ -116,7 +116,7 @@ export default {
     },
     created() {
         this.fetchPosts();
-    }
+    },
 }
 </script>
 

@@ -1,32 +1,34 @@
 <template>
-    <div class="position-relative text-white">
+    <router-link :to="{ name: 'SinglePost', params: { post: post.slug } }" class="position-relative text-white">
         <img :src="imageUrl" alt=""
-            :class="['rounded', { 'img-fluid': isNotFirst }, { 'img-small': isSmall }, { 'img-large': isLarge }]">
+            :class="['rounded', 'thumbnail', { 'img-fluid': isNotFirst }, { 'img-small': isSmall }, { 'img-large': isLarge }]">
         <div class="position-absolute px-2">
             <div class="d-flex py-2">
                 <p class="bg-primary rounded py-1 px-2 fs-6 m-0">
-                    <i class=" bi bi-circle-fill"></i> Tag
+                    <i class="bi bi-circle-fill"></i> Tag
                 </p>
             </div>
             <div>
                 <h4 class="">{{ title }}</h4>
-                <p class="fs-6 text-break lh-sm"> {{ content }} </p> <!-- Da aggiungere backend-->
+                <p class="fs-6 text-break lh-sm"> {{ content }} </p>
             </div>
             <div>
                 <p><small>by {{ user }} • {{ created_at }}<span v-if="!isNotFirst"> •
                             {{ read_time }}</span></small></p>
-
             </div>
-
         </div>
-    </div>
-
+    </router-link>
 </template>
+
 
 <script>
 export default {
     name: 'HeroCard',
     props: {
+        post: {
+            type: Object,
+            required: true
+        },
         imageUrl: {
             type: String,
             required: true,
@@ -66,15 +68,22 @@ export default {
 
     },
 
+
 }
 </script>
 
 <style lang="scss" scoped>
 .position-absolute {
     bottom: 1%;
+    // top: 1%;
     left: 15px;
     right: 15px;
-    // cursor: pointer;
+    cursor: pointer;
+}
+
+img {
+    filter: brightness(85%);
+
 }
 
 .img-small {
@@ -85,5 +94,15 @@ export default {
 .img-large {
     height: 200px;
     object-fit: cover;
+}
+
+
+
+.thumbnail {
+    transition: filter 0.1s ease-in;
+}
+
+.thumbnail:hover {
+    filter: brightness(70%);
 }
 </style>
