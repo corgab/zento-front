@@ -7,7 +7,7 @@
             <div class="container">
                 <div v-if="!isLoading && posts.length == 4">
                     <div class="row">
-                        <HeroCard class="col-12 col-xl-6 mb-2 mb-xl-0" :imageUrl="posts[0]?.images[0]?.link"
+                        <HeroCard class="col-12 col-xl-6 mb-md-3 mb-xl-0" :imageUrl="posts[0]?.images[0]?.link"
                             :title="posts[0]?.title" :user="posts[0]?.user.name" :created_at="posts[0]?.created_date"
                             :read_time="posts[0]?.reading_time" :isNotFirst="false" :post="posts[0]" />
                         <!-- :content="posts[0]?.content"-->
