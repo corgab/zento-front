@@ -5,12 +5,11 @@
     <div>
         <div class="mt-3">
             <div class="container">
-                <div v-if="!isLoading && posts.length == 4">
+                <div v-if="!isLoading && posts.length > 4">
                     <div class="row">
                         <HeroCard class="col-12 col-xl-6 mb-md-3 mb-xl-0" :imageUrl="posts[0]?.images[0]?.link"
                             :title="posts[0]?.title" :user="posts[0]?.user.name" :created_at="posts[0]?.created_date"
                             :read_time="posts[0]?.reading_time" :isNotFirst="false" :post="posts[0]" />
-                        <!-- :content="posts[0]?.content"-->
                         <div class="col-12 col-xl-6 mt-3 mt-md-0">
                             <HeroCard class="col-12 d-block" :isSmall="true" :imageUrl="posts[1]?.images[0]?.link"
                                 :title="posts[1]?.title" :user="posts[1]?.user.name"
@@ -27,11 +26,10 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
                 <div class="row my-5">
                     <CardHighLights class="col-12 col-md-7 col-lg-8" />
-                    <div class="col-12 col-md-5 col-lg-4"> <!-- Sistemare-->
+                    <div class="col-12 col-md-5 col-lg-4"> <!--Sistemare -->
                         <div class="d-flex align-items-center justify-content-evenly pb-1">
                             <div class="text-center animation" v-for="social in socials" :key="social.name">
                                 <a :href="social.url" target="_blank" rel="noopener noreferrer">
@@ -45,6 +43,9 @@
                         <RecentsPosts class="my-4" />
                     </div>
                 </div>
+
+                <!-- INSERISCI QUI IL CAROSELLO -->
+                <PostCarousel :posts="posts" />
             </div>
         </div>
     </div>
@@ -57,6 +58,7 @@ import CardHighLights from '../components/PageComponents/HighLights.vue';
 import TrendingsTopic from '../components/PageComponents/TrendingsTopic.vue';
 import RecentsPosts from '../components/PageComponents/RecentsPosts.vue';
 import HeroCard from '../components/HeroCard.vue';
+import PostCarousel from '../components/PostCarousel.vue';
 
 
 export default {
@@ -65,6 +67,7 @@ export default {
         TrendingsTopic,
         RecentsPosts,
         HeroCard,
+        PostCarousel
     },
     data() {
         return {
@@ -100,7 +103,7 @@ export default {
         fetchPosts() {
             axios.get(`${store.appUrl}api/posts`, {
                 params: {
-                    per_page: 4
+                    per_page: 100
                 }
             })
                 .then(response => {
@@ -109,15 +112,12 @@ export default {
 
                 })
                 .catch(error => {
-                    console.error("Errore durante il recupero dei post:", error);
+                    console.error(" Errore durante il recupero dei post:", error);
                 });
         }
-
-    },
-    created() {
+    }, created() {
         this.fetchPosts();
     },
-}
-</script>
+} </script>
 
 <style lang="scss" scoped></style>

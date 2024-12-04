@@ -1,15 +1,15 @@
 <template>
-    <router-link :to="{ name: 'SinglePost', params: { post: post.slug } }" class="position-relative text-white scale">
+    <router-link :to="{ name: 'SinglePost', params: { post: post.slug } }" class="position-relative text-white">
         <img :src="imageUrl" alt=""
             :class="['rounded', 'thumbnail', { 'img-fluid': isNotFirst }, { 'img-small': isSmall }, { 'img-large': isLarge }]">
-        <div class="position-absolute px-2">
+        <div class="position-absolute pe-5 ps-2">
             <div class="d-flex py-2">
                 <p class="bg-primary rounded py-1 px-2 fs-6 m-0" v-for="tag in post.tags">
                     <i class="bi bi-circle-fill"></i> {{ tag.name }}
                 </p>
             </div>
             <div>
-                <h4 class="">{{ title }}</h4>
+                <h4>{{ title }}</h4>
                 <p class="fs-6 text-break lh-sm"> {{ content }} </p>
             </div>
             <div>
@@ -19,7 +19,6 @@
         </div>
     </router-link>
 </template>
-
 
 <script>
 export default {
@@ -77,13 +76,16 @@ export default {
     bottom: 1%;
     // top: 1%;
     left: 15px;
-    right: 15px;
+    // right: 100px;
     cursor: pointer;
+    width: 100%;
+    height: auto;
+    /* Nasconde la parte dell'immagine che esce dal contenitore */
 }
 
-img {
-    filter: brightness(85%);
 
+img {
+    display: block;
 }
 
 .img-small {
@@ -97,16 +99,14 @@ img {
 }
 
 .thumbnail {
+    display: block;
+    width: 100%;
     transition: filter 0.1s ease-in;
+    filter: brightness(95%);
 }
 
 .thumbnail:hover {
     filter: brightness(70%);
-}
-
-.scale:hover {
-    display: block;
-    transform: scale(1.05);
 
 }
 </style>
